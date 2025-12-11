@@ -1,0 +1,80 @@
+MySQL DB:
+    
+    Database: snsu_garments_db
+    Table: users
+        Syntax:
+            CREATE DATABASE snsu_garments_db;
+
+            USE snsu_garments_db;
+
+            CREATE TABLE users(
+                id INT PRIMARY KEY AUTO_INCREMENT,
+                username VARCHAR(100),
+                school_id VARCHAR(50) NOT NULL UNIQUE,
+                email VARCHAR(191) NOT NULL UNIQUE,
+                password VARBINARY(255) NOT NULL,
+                role ENUM('admin', 'student') NOT NULL DEFAULT 'student', 
+                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+            );
+
+--------- Male Garments ------------
+    Table: male_garments
+        Sytanx:
+            CREATE TABLE male_garments (
+                id INT PRIMARY KEY AUTO_INCREMENT,
+                school_id INT NOT NULL,
+                polo_size VARCHAR(10),
+                slacks_size VARCHAR(10),
+                shirt_size VARCHAR(10),
+                jp_size VARCHAR(10),
+
+                FOREIGN KEY (garment_id) REFERENCES garments(id)
+                    ON DELETE CASCADE
+            );
+
+--------- FeMale Garments ------------
+    Table: female_garments
+        Sytanx:
+            CREATE TABLE female_garments (
+                id INT PRIMARY KEY AUTO_INCREMENT,
+                school_id INT NOT NULL,
+                blouse_size VARCHAR(10),
+                slacks_size VARCHAR(10),
+                skirt_size VARCHAR(10),
+                shirt_size VARCHAR(10),
+                jp_size VARCHAR(10),
+
+                FOREIGN KEY (garment_id) REFERENCES garments(id)
+                    ON DELETE CASCADE
+            );
+
+--------- Male Waiting List ----------
+    Table: waiting_list_male
+        Syntax:
+            CREATE TABLE waiting_list_male (
+                id INT PRIMARY KEY AUTO_INCREMENT,
+                student_id VARCHAR(50) NOT NULL UNIQUE,
+                student_name VARCHAR(100),
+                year INT,
+                polo_size VARCHAR(10),
+                slacks_size VARCHAR(10),
+                shirt_size VARCHAR(10),
+                jp_size VARCHAR(10),
+                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+            );
+
+--------- Female Waiting List --------
+    Table: waiting_list_female
+        Syntax:
+            CREATE TABLE waiting_list_female (
+                id INT PRIMARY KEY AUTO_INCREMENT,
+                student_id VARCHAR(50) NOT NULL UNIQUE,
+                student_name VARCHAR(100),
+                year INT,
+                blouse_size VARCHAR(10),
+                slacks_size VARCHAR(10),
+                skirt_size VARCHAR(10),
+                shirt_size VARCHAR(10),
+                jp_size VARCHAR(10),
+                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+            );

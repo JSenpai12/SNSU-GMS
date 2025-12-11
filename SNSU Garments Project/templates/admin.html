@@ -1,0 +1,843 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Home - SNSU</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='admin.css') }}">
+</head>
+<body>
+    <!-- Top Header -->
+    <header>
+        <nav>
+            <ul>
+                <li><img src="{{ url_for('static', filename='images/snsu_logo.png') }}" class="nav-btn" style="width:40px; height:auto;" class="nav-btn" style="pointer-events: none; width: 40px; height: auto;"></li>
+                <li><button class="nav-btn" data-section="dashboard-section">Dashboard</button></li>
+                <li><button class="nav-btn" data-section="stock-section">Stocks</button></li>
+                <li><button class="nav-btn" data-section="database-section">Database</button></li>
+                <li><button class="nav-btn" data-section="summary-section">Summary</button></li>
+                <li style="margin-left:auto;"><button id="logout-btn">Logout</button></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+
+        <!-- Dashboard Section -->
+        <section id="dashboard-section" class="main-section">
+
+            <div class="day-navigation">
+                <button id="prev-day-btn">&#8592; Previous Day</button>
+                <h2 id="dashboard-date"></h2>
+                <button id="next-day-btn">Next Day &#8594;</button>
+            </div>
+
+            <div class="dashboard-table-container">
+                <h3>Boys</h3>
+                <table id="dashboard-table-boys">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Year</th>
+                            <th>Name</th>
+                            <th>Polo Size</th>
+                            <th>Slacks Size</th>
+                            <th>Shirt Size</th>
+                            <th>JP Size</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+
+            <div class="dashboard-table-container">
+                <h3>Girls</h3>
+                <table id="dashboard-table-girls">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Year</th>
+                            <th>Name</th>
+                            <th>Blouse Size</th>
+                            <th>Slacks Size</th>
+                            <th>Skirt Size</th>
+                            <th>Shirt Size</th>
+                            <th>JP Size</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+
+            <hr>
+
+            <div class="dashboard-table-container">
+                <h3>Waiting List (Male)</h3>
+                <table id="waiting-list-table-boys">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Year</th>
+                            <th>Name</th>
+                            <th>Polo Size</th>
+                            <th>Slacks Size</th>
+                            <th>Shirt Size</th>
+                            <th>JP Size</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+
+            <div class="dashboard-table-container">
+                <h3>Waiting List (Female)</h3>
+                <table id="waiting-list-table-girls">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Year</th>
+                            <th>Name</th>
+                            <th>Blouse Size</th>
+                            <th>Slacks Size</th>
+                            <th>Skirt Size</th>
+                            <th>Shirt Size</th>
+                            <th>JP Size</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+
+            <button id="add-entry-btn">+</button>
+        </section>
+
+        <section id="stock-section" class="main-section">
+            <h2 class="stock-title">Available Stocks</h2>
+
+            <!-- Boys Stock Table -->
+            <div class="stock-table-container">
+                <h3>Boys</h3>
+                <table class="stock-table">
+                    <thead>
+                        <tr>
+                            <th>Garment</th>
+                            <th>S</th>
+                            <th>M</th>
+                            <th>L</th>
+                            <th>XL</th>
+                            <th>XXL</th>
+                            <th>XXXL</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Polo</td>
+                            <td id="stock-polo-S">0</td>
+                            <td id="stock-polo-M">0</td>
+                            <td id="stock-polo-L">0</td>
+                            <td id="stock-polo-XL">0</td>
+                            <td id="stock-polo-XXL">0</td>
+                            <td id="stock-polo-XXXL">0</td>
+                        </tr>
+                        <tr>
+                            <td>Slacks</td>
+                            <td id="stock-slacks-28">0</td>
+                            <td id="stock-slacks-30">0</td>
+                            <td id="stock-slacks-32">0</td>
+                            <td id="stock-slacks-34">0</td>
+                            <td id="stock-slacks-36">0</td>
+                            <td id="stock-slacks-38">0</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Girls Stock Table -->
+            <div class="stock-table-container">
+                <h3>Girls</h3>
+                <table class="stock-table">
+                    <thead>
+                        <tr>
+                            <th>Garment</th>
+                            <th>S</th>
+                            <th>M</th>
+                            <th>L</th>
+                            <th>XL</th>
+                            <th>XXL</th>
+                            <th>XXXL</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Blouse</td>
+                            <td id="stock-blouse-S">0</td>
+                            <td id="stock-blouse-M">0</td>
+                            <td id="stock-blouse-L">0</td>
+                            <td id="stock-blouse-XL">0</td>
+                            <td id="stock-blouse-XXL">0</td>
+                            <td id="stock-blouse-XXXL">0</td>
+                        </tr>
+                        <tr>
+                            <td>Slacks</td>
+                            <td id="stock-slacks-28_g">0</td>
+                            <td id="stock-slacks-30_g">0</td>
+                            <td id="stock-slacks-32_g">0</td>
+                            <td id="stock-slacks-34_g">0</td>
+                            <td id="stock-slacks-36_g">0</td>
+                            <td id="stock-slacks-38_g">0</td>
+                        </tr>
+                        <tr>
+                            <td>Skirt</td>
+                            <td id="stock-skirt-24">0</td>
+                            <td id="stock-skirt-26">0</td>
+                            <td id="stock-skirt-28">0</td>
+                            <td id="stock-skirt-30">0</td>
+                            <td id="stock-skirt-32">0</td>
+                            <td id="stock-skirt-34">0</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="stock-table-container">
+                <h3>Physical Education Uniforms</h3>
+                <table class="stock-table">
+                    <thead>
+                        <tr>
+                            <th>Garment</th>
+                            <th>S</th>
+                            <th>M</th>
+                            <th>L</th>
+                            <th>XL</th>
+                            <th>XXL</th>
+                            <th>XXXL</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Shirt</td>
+                            <td id="stock-shirt-S">0</td>
+                            <td id="stock-shirt-M">0</td>
+                            <td id="stock-shirt-L">0</td>
+                            <td id="stock-shirt-XL">0</td>
+                            <td id="stock-shirt-XXL">0</td>
+                            <td id="stock-shirt-XXXL">0</td>
+                        </tr>
+                        <tr>
+                            <td>Jogging Pants</td>
+                            <td id="stock-jp-S">0</td>
+                            <td id="stock-jp-M">0</td>
+                            <td id="stock-jp-L">0</td>
+                            <td id="stock-jp-XL">0</td>
+                            <td id="stock-jp-XXL">0</td>
+                            <td id="stock-jp-XXXL">0</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <button id="add-stock-btn">+</button>
+
+        </section>
+
+        <!-- Database Section -->
+        <section id="database-section" class="main-section">
+
+            <div class="search-container">
+                <input type="text" id="search-input" placeholder="Search ID">
+                <button id="search-btn" disabled>Search</button>
+            </div>
+
+            <!-- Year Switcher -->
+            <div class="sub-header">
+                <button class="year-btn" data-year="year1">1st Year</button>
+                <button class="year-btn" data-year="year2">2nd Year</button>
+                <button class="year-btn" data-year="year3">3rd Year</button>
+                <button class="year-btn" data-year="year4">4th Year</button>
+            </div>
+
+            <!-- Year 1 -->
+            <div class="year-content" id="year1">
+                <h3>1st Year Students</h3>
+
+                <div class="tables-container">
+                    
+                    <!-- Unclaimed Table -->
+                    <div class="year-table-wrapper">
+                        <h4>Unclaimed</h4>
+                        <table class="year-table unclaimed-table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Name</th>
+                                    <th>Sex</th>
+                                    <th>Polo/Blouse</th>
+                                    <th>Slacks</th>
+                                    <th>Skirt</th>
+                                    <th>Shirt</th>
+                                    <th>JP</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+
+                    <!-- Claimed Table -->
+                    <div class="year-table-wrapper">
+                        <h4>Claimed</h4>
+                        <table class="year-table claimed-table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Name</th>
+                                    <th>Sex</th>
+                                    <th>Polo/Blouse</th>
+                                    <th>Slacks</th>
+                                    <th>Skirt</th>
+                                    <th>Shirt</th>
+                                    <th>JP</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Year 2 -->
+            <div class="year-content" id="year2">
+                <h3>2nd Year Students</h3>
+
+                <div class="tables-container">
+                    
+                    <div class="year-table-wrapper">
+                        <h4>Unclaimed</h4>
+                        <table class="year-table unclaimed-table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Name</th>
+                                    <th>Sex</th>
+                                    <th>Polo/Blouse</th>
+                                    <th>Slacks</th>
+                                    <th>Skirt</th>
+                                    <th>Shirt</th>
+                                    <th>JP</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+
+                    <div class="year-table-wrapper">
+                        <h4>Claimed</h4>
+                        <table class="year-table claimed-table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Name</th>
+                                    <th>Sex</th>
+                                    <th>Polo/Blouse</th>
+                                    <th>Slacks</th>
+                                    <th>Skirt</th>
+                                    <th>Shirt</th>
+                                    <th>JP</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Year 3 -->
+            <div class="year-content" id="year3">
+                <h3>3rd Year Students</h3>
+
+                <div class="tables-container">
+                    
+                    <div class="year-table-wrapper">
+                        <h4>Unclaimed</h4>
+                        <table class="year-table unclaimed-table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Name</th>
+                                    <th>Sex</th>
+                                    <th>Polo/Blouse</th>
+                                    <th>Slacks</th>
+                                    <th>Skirt</th>
+                                    <th>Shirt</th>
+                                    <th>JP</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+
+                    <div class="year-table-wrapper">
+                        <h4>Claimed</h4>
+                        <table class="year-table claimed-table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Name</th>
+                                    <th>Sex</th>
+                                    <th>Polo/Blouse</th>
+                                    <th>Slacks</th>
+                                    <th>Skirt</th>
+                                    <th>Shirt</th>
+                                    <th>JP</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Year 4 -->
+            <div class="year-content" id="year4">
+                <h3>4th Year Students</h3>
+
+                <div class="tables-container">
+
+                    <div class="year-table-wrapper">
+                        <h4>Unclaimed</h4>
+                        <table class="year-table unclaimed-table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Name</th>
+                                    <th>Sex</th>
+                                    <th>Polo/Blouse</th>
+                                    <th>Slacks</th>
+                                    <th>Skirt</th>
+                                    <th>Shirt</th>
+                                    <th>JP</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+
+                    <div class="year-table-wrapper">
+                        <h4>Claimed</h4>
+                        <table class="year-table claimed-table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Name</th>
+                                    <th>Sex</th>
+                                    <th>Polo/Blouse</th>
+                                    <th>Slacks</th>
+                                    <th>Skirt</th>
+                                    <th>Shirt</th>
+                                    <th>JP</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+
+        </section>
+
+        <section id="summary-section" class="main-section">
+            <h2>Summary</h2>
+            <div class="summary-container">
+
+                <!-- DAILY SUMMARY -->
+                <div class="summary-card">
+                    <h3>Daily Summary</h3>
+                    <p class="summary-date" id="summary-daily-date"></p>
+                    
+                    <table class="summary-table">
+                        <thead>
+                            <tr>
+                                <th>Category</th>
+                                <th>Male Claims</th>
+                                <th>Female Claims</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Boys</td>
+                                <td id="summary-daily-male-boys">0</td>
+                                <td id="summary-daily-female-boys">0</td>
+                            </tr>
+                            <tr>
+                                <td>Girls</td>
+                                <td id="summary-daily-male-girls">0</td>
+                                <td id="summary-daily-female-girls">0</td>
+                            </tr>
+                            <tr>
+                                <td>PE Uniforms</td>
+                                <td id="summary-daily-male-pe">0</td>
+                                <td id="summary-daily-female-pe">0</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- WEEKLY SUMMARY -->
+                <div class="summary-card">
+                    <h3>Weekly Summary</h3>
+                    <p class="summary-date" id="summary-weekly-date"></p>
+                    
+                    <table class="summary-table">
+                        <thead>
+                            <tr>
+                                <th>Category</th>
+                                <th>Male Claims</th>
+                                <th>Female Claims</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Boys</td>
+                                <td id="summary-weekly-male-boys">0</td>
+                                <td id="summary-weekly-female-boys">0</td>
+                            </tr>
+                            <tr>
+                                <td>Girls</td>
+                                <td id="summary-weekly-male-girls">0</td>
+                                <td id="summary-weekly-female-girls">0</td>
+                            </tr>
+                            <tr>
+                                <td>PE Uniforms</td>
+                                <td id="summary-weekly-male-pe">0</td>
+                                <td id="summary-weekly-female-pe">0</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- MONTHLY SUMMARY -->
+                <div class="summary-card">
+                    <h3>Monthly Summary</h3>
+                    <p class="summary-date" id="summary-monthly-date"></p>
+                    
+                    <table class="summary-table">
+                        <thead>
+                            <tr>
+                                <th>Category</th>
+                                <th>Male Claims</th>
+                                <th>Female Claims</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Boys</td>
+                                <td id="summary-monthly-male-boys">0</td>
+                                <td id="summary-monthly-female-boys">0</td>
+                            </tr>
+                            <tr>
+                                <td>Girls</td>
+                                <td id="summary-monthly-male-girls">0</td>
+                                <td id="summary-monthly-female-girls">0</td>
+                            </tr>
+                            <tr>
+                                <td>PE Uniforms</td>
+                                <td id="summary-monthly-male-pe">0</td>
+                                <td id="summary-monthly-female-pe">0</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- YEARLY SUMMARY -->
+                <div class="summary-card">
+                    <h3>Yearly Summary</h3>
+                    <p class="summary-date" id="summary-yearly-date"></p>
+                    
+                    <table class="summary-table">
+                        <thead>
+                            <tr>
+                                <th>Category</th>
+                                <th>Male Claims</th>
+                                <th>Female Claims</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Boys</td>
+                                <td id="summary-yearly-male-boys">0</td>
+                                <td id="summary-yearly-female-boys">0</td>
+                            </tr>
+                            <tr>
+                                <td>Girls</td>
+                                <td id="summary-yearly-male-girls">0</td>
+                                <td id="summary-yearly-female-girls">0</td>
+                            </tr>
+                            <tr>
+                                <td>PE Uniforms</td>
+                                <td id="summary-yearly-male-pe">0</td>
+                                <td id="summary-yearly-female-pe">0</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </section>
+
+
+
+        <!-- Update Modals -->
+        <div id="updateMaleFormContainer" style="display:none;" class="modal">
+            <div class="modal-content">
+                <h3>Student Status</h3>
+
+                <label>Name:</label>
+                <input type="text" id="updateMaleName" disabled>
+
+                <label>Year:</label>
+                <input type="text" id="updateMaleYear" disabled>
+
+                <label>ID:</label>
+                <input type="text" id="updateMaleId" disabled>
+
+                <label>Polo Size:</label>
+                <input type="text" id="updateMalePoloSize" disabled>
+
+                <label>Slacks Size:</label>
+                <input type="text" id="updateMaleSlacksSize" disabled>
+
+                <label>Shirt Size:</label>
+                <input type="text" id="updateMaleShirtSize" disabled>
+
+                <label>JP Size:</label>
+                <input type="text" id="updateMaleJPSize" disabled>
+
+                <input type="hidden" id="updateMaleDbId">
+
+                <label>Status:</label>
+                <input type="text" id="currentMaleStatus" disabled>
+
+                <button id="closeUpdateForm">Close</button>
+            </div>
+        </div>
+
+        <div id="updateFemaleFormContainer" style="display:none;" class="modal">
+            <div class="modal-content">
+                <h3>Student Status</h3>
+
+                <label>Name:</label>
+                <input type="text" id="updateFemaleName" disabled>
+
+                <label>Year:</label>
+                <input type="text" id="updateFemaleYear" disabled>
+
+                <label>ID:</label>
+                <input type="text" id="updateFemaleId" disabled>
+
+                <label>Blouse Size:</label>
+                <input type="text" id="updateFemaleBlouseSize" disabled>
+
+                <label>Slacks Size:</label>
+                <input type="text" id="updateFemaleSlacksSize" disabled>
+
+                <label>Skirt Size:</label>
+                <input type="text" id="updateFemaleSkirtSize" disabled>
+
+                <label>Shirt Size:</label>
+                <input type="text" id="updateFemaleShirtSize" disabled>
+
+                <label>JP Size:</label>
+                <input type="text" id="updateFemaleJPSize" disabled>
+
+                <input type="hidden" id="updateFemaleDbId">
+
+                <label>Status:</label>
+                <input type="text" id="currentFemaleStatus" disabled>
+
+                <label>Change Status:</label>
+                <select id="newStatus">
+                    <option value="claimed">Claimed</option>
+                    <option value="unclaimed">Unclaimed</option>
+                </select>
+
+                <button id="applyUpdateBtn">Update</button>
+                <button id="closeUpdateForm">Close</button>
+            </div>
+        </div>
+
+        <!-- Add Stock Modal -->
+        <div id="add-stock-form" class="overlay hidden">
+            <div class="form-box">
+                <h3>Add Stock</h3>
+
+                <label>Garment</label>
+                <select id="stock-garment">
+                    <option value="boys-polo">Boys - Polo</option>
+                    <option value="boys-slacks">Boys - Slacks</option>
+                    <option value="girls-blouse">Girls - Blouse</option>
+                    <option value="girls-slacks">Girls - Slacks</option>
+                    <option value="girls-skirt">Girls - Skirt</option>
+                    <option value="shirt">PE - Shirt</option>
+                    <option value="jp">PE - Jogging Pants</option>
+                </select>
+
+                <label>Size</label>
+                <input type="text" id="stock-size" placeholder="Enter size (e.g., S, M, L, 28, 30)">
+
+                <label>Quantity</label>
+                <input type="number" id="stock-quantity" min="1" value="1">
+
+                <button id="submit-stock-btn">Add Stock</button>
+                <button class="close-btn">&times;</button>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Overlay Form Selector -->
+    <div id="overlay-form" class="overlay hidden">
+        <div class="form-box">
+            <h3>Select Entry Type</h3>
+            <button id="male-btn">Male</button>
+            <button id="female-btn">Female</button>
+            <button class="close-btn">&times;</button>
+        </div>
+    </div>
+
+    <!-- Male Form -->
+    <form id="male-form" action="{{ url_for('add_male_garments') }}" method="POST" class="overlay hidden">
+        <div class="form-box">
+            <h3>Student Entry</h3>
+            <label>Name</label>
+            <input type="text" name="male-name" id="male-name" placeholder="Enter student Name">
+            <label>ID</label>
+            <input type="text" name="male-id" id="male-id" placeholder="Enter student ID">
+            <label>Year</label>
+            <input type="number" name="male-year" id="male-year" min="1" max="4" placeholder="Enter student Year">
+            <label>Polo Size</label>
+            <select name="male-polo-size" id="male-polo-size">
+                <option value="S">S</option>
+                <option value="M">M</option>
+                <option value="L">L</option>
+                <option value="XL">XL</option>
+                <option value="XXL">XXL</option>
+                <option value="XXXL">XXXL</option>
+            </select>
+
+            <label>Slacks Size</label>
+            <select name="male-slacks-size" id="male-slacks-size">
+                <option value="28">28"</option>
+                <option value="30">30"</option>
+                <option value="32">32"</option>
+                <option value="34">34"</option>
+                <option value="36">36"</option>
+                <option value="38">38"</option>
+            </select>
+
+            <label>Shirt Size</label>
+            <select name="male-shirt-size" id="male-shirt-size">
+                <option value="S">S</option>
+                <option value="M">M</option>
+                <option value="L">L</option>
+                <option value="XL">XL</option>
+                <option value="XXL">XXL</option>
+                <option value="XXXL">XXXL</option>
+            </select>
+
+            <label>JP Size</label>
+            <select name="male-jp-size" id="male-jp-size">
+                <option value="S">S</option>
+                <option value="M">M</option>
+                <option value="L">L</option>
+                <option value="XL">XL</option>
+                <option value="XXL">XXL</option>
+                <option value="XXXL">XXXL</option>
+            </select>
+
+            <button type="submit" id="regular-submit-male">Submit</button>
+            <button type="button" class="close-btn">&times;</button>
+        </div>
+    </form>
+
+    <!-- Female Form -->
+    <form id="female-form" class="overlay hidden" action="{{ url_for('add_female_garments') }}" method="POST">
+        <div class="form-box">
+            <h3>Student Entry</h3>
+            <label>Name</label>
+            <input type="text" name="female-name"id="female-name" placeholder="Enter student Name">
+            <label>ID</label>
+            <input type="text" name="female-id" id="female-id" placeholder="Enter student ID">
+            <label>Year</label>
+            <input type="number" name="female-year" id="female-year" min="1" max="4" placeholder="Enter student Year">
+            <label>Blouse Size</label>
+            <select name="female-blouse-size" id="female-blouse-size">
+                <option value="S">S</option>
+                <option value="M">M</option>
+                <option value="L">L</option>
+                <option value="XL">XL</option>
+                <option value="XXL">XXL</option>
+                <option value="XXXL">XXXL</option>
+            </select>
+
+            <label>Slacks Size</label>
+            <select name="female-slacks-size" id="female-slacks-size">
+                <option value="28">28"</option>
+                <option value="30">30"</option>
+                <option value="32">32"</option>
+                <option value="34">34"</option>
+                <option value="36">36"</option>
+                <option value="38">38"</option>
+            </select>
+
+            <label>Skirt Size</label>
+            <select name="female-skirt-size" id="female-skirt-size">
+                <option value="24">24"</option>
+                <option value="26">26"</option>
+                <option value="28">28"</option>
+                <option value="30">30"</option>
+                <option value="32">32"</option>
+                <option value="34">34"</option>
+            </select>
+
+            <label>Shirt Size</label>
+            <select name="female-shirt-size" id="female-shirt-size">
+                <option value="S">S</option>
+                <option value="M">M</option>
+                <option value="L">L</option>
+                <option value="XL">XL</option>
+                <option value="XXL">XXL</option>
+                <option value="XXXL">XXXL</option>
+            </select>
+
+            <label>JP Size</label>
+            <select name="female-jp-size" id="female-jp-size">
+                <option value="S">S</option>
+                <option value="M">M</option>
+                <option value="L">L</option>
+                <option value="XL">XL</option>
+                <option value="XXL">XXL</option>
+                <option value="XXXL">XXXL</option>
+            </select>
+            <button type="submit" id="regular-submit-female">Submit</button>
+            <button class="close-btn">&times;</button>
+        </div>
+    </form>
+
+    <!-- Footer -->
+    <footer class="dashboard-footer">
+        <div class="footer-content">
+            <span>© 2025 SNSU. All Rights Reserved.</span>
+            <span>SNSU Garment Scheduling and Management System</span>
+            <span>Contact: info@snsu.edu.ph | Tel Nos. (086) 827-3741, (086) 827-3742</span>
+        </div>
+    </footer>
+
+    <script src="{{ url_for('static', filename='admin.js') }}"></script>
+</body>
+</html>

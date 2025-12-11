@@ -1,0 +1,17 @@
+<h2>Stock Table</h2>
+
+<table border="1">
+<tr>
+    {% for col in stock[0].keys() %}
+        <th>{{ col }}</th>
+    {% endfor %}
+</tr>
+
+{% for row in stock %}
+<tr>
+    {% for value in row.values() %}
+        <td>{{ value }}</td>
+    {% endfor %}
+</tr>
+{% endfor %}
+</table>

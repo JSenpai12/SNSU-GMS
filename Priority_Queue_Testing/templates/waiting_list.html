@@ -1,0 +1,15 @@
+<h2>Waiting Queue</h2>
+
+<h3>Female Queue</h3>
+<ul>
+{% for p, t, sid in female_queue %}
+    <li>ID: {{ sid }} | Priority: {{ p }}</li>
+{% endfor %}
+</ul>
+
+<h3>Male Queue</h3>
+<ul>
+{% for p, t, sid in male_queue %}
+    <li>ID: {{ sid }} | Priority: {{ p }}</li>
+{% endfor %}
+</ul>

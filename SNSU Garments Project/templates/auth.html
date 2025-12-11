@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SNSU-GSMS Login</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='auth.css') }}">
+</head>
+<body>
+
+    <div class="auth-container">
+
+        <!-- LEFT SIDE: Logo + Title -->
+        <div class="auth-left">
+            <img src="{{ url_for('static', filename='images/snsu_logo.png') }}" alt="SNSU Logo" class="logo">
+            <h1 class="system-title">SNSU Garment Scheduling and Management System</h1>
+        </div>
+
+        <!-- RIGHT SIDE: Forms -->
+        <div class="auth-right">
+
+            <!-- WHITE BOX: LOGIN & SIGNUP FORMS -->
+            <div class="container">
+
+                <!-- LOGIN FORM -->
+                <div class="form-container" id="login-container">
+                    <h2>Login</h2>
+                    <form id="login-form" action="{{ url_for('login') }}" method="POST">
+                        <input type="email" name="email" placeholder="Email" required>
+                        <input type="password" name="password" placeholder="Password" required>
+                        <button type="submit">Login</button>
+                    </form>
+                    <p>Not registered? <span id="show-signup" class="link-btn">Sign up here</span></p>
+                </div>
+
+                <!-- SIGNUP FORM -->
+                <div class="form-container" id="signup-container">
+                    <h2>Create Account</h2>
+                    <form id="signup-form" action="{{ url_for('signup') }}" method="POST">
+                        <input type="text" name="username" placeholder="Full Name" required>
+                        <input type="email" name="email" placeholder="Email" required>
+                        <input type="text" name="school_id" placeholder="School ID" required>
+                        <input type="password" id="password" name="password" placeholder="Password" required
+                        oninput="document.getElementById('re_password').setCustomValidity('')">
+                        <input type="password" id="re_password" name="re_password" placeholder="Re-enter Password"
+                        required 
+                        oninput="this.setCustomValidity(this.value !== document.getElementById('password').value ? 'Passwords do not match' : '')">
+                        <button type="submit">Sign Up</button>
+                    </form>
+                    <p>Already have an account? <span id="show-login" class="link-btn">Login here</span></p>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+    <!-- Footer -->
+    <footer class="dashboard-footer">
+        <div class="footer-content">
+            <span>© 2025 SNSU. All Rights Reserved.</span>
+            <span>SNSU Garment Scheduling and Management System</span>
+            <span>Contact: info@snsu.edu.ph | Tel Nos. (086) 827-3741, (086) 827-3742</span>
+        </div>
+    </footer>
+
+    <script src="{{ url_for('static', filename='auth.js') }}"></script>
+</body>
+</html>
