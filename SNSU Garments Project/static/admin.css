@@ -1,0 +1,526 @@
+/* Reset & base styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background: #f9fafb;
+    color: #333;
+    line-height: 1.5;
+    font-size: 14px;
+}
+
+/* Header & Navigation */
+header {
+    background: #216534;
+    color: #fff;
+    padding: 12px 24px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    border-bottom: 5px solid #E9B335;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+    align-items: center;
+    gap: 24px;
+}
+
+/* Navigation links */
+nav a.nav-btn {
+    color: #fff;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 500;
+    padding: 10px 16px;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+nav a.nav-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-2px);
+}
+
+/* Navigation buttons */
+nav button.nav-btn {
+    background: transparent;
+    border: none;
+    color: #fff;
+    font-size: 15px;
+    font-weight: 500;
+    padding: 10px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+nav button.nav-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-2px);
+}
+
+#logout-btn {
+    margin-left: auto;
+    padding: 8px 14px;
+    background: #27793e;
+    border: none;
+    border-radius: 6px;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+#logout-btn:hover {
+    background: #349c51;
+}
+
+/* Main container */
+main {
+    padding: 25px;
+}
+
+/* Main sections */
+.main-section {
+    display: none;
+    background: #fff;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+    min-height: 80vh;
+}
+
+.main-section.show {
+    display: block;
+}
+
+/* Table Styles */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+    font-size: 14px;
+}
+
+th, td {
+    padding: 10px 12px;
+    text-align: left;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+th {
+    background: #216534;
+    color: #fff;
+    font-weight: 600;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    border-bottom: solid #E9B335;
+}
+
+tr:nth-child(even) {
+    background: #f7f7f7;
+}
+
+tr:hover {
+    background: #e6f2ed;
+    transition: background 0.2s;
+}
+
+/* Floating Action Buttons */
+#add-entry-btn,
+#add-stock-btn {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    font-size: 28px;
+    color: white;
+    background: #E9B335;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 6px 14px rgba(0,0,0,0.2);
+    z-index: 50;
+    transition: all 0.3s ease;
+}
+
+#add-entry-btn:hover,
+#add-stock-btn:hover {
+    background: #E9B335;
+    transform: translateY(-2px);
+}
+
+/* Overlay & Modals */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;  /* vertical centering */
+    z-index: 300;
+    padding: 20px;
+    overflow-y: auto;      /* allows scrolling if modal exceeds viewport */
+}
+
+.form-box,
+.modal-content {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 30px 25px;
+    width: 400px;
+    max-width: 90vw;
+    max-height: 90vh;      /* prevent from being too tall */
+    overflow-y: auto;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    position: relative;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    margin: auto 0;         /* ensures true vertical centering */
+}
+
+.hidden {
+    display: none;
+}
+
+.form-box,
+.modal-content {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 30px 25px;
+    width: 400px;           /* fixed professional width */
+    max-width: 90vw;        /* responsive */
+    max-height: 90vh;       /* prevent overflow */
+    overflow-y: auto;       /* scroll if content exceeds */
+    box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    position: relative;
+    margin: 0 auto;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* Smooth opening effect */
+.overlay.show .form-box,
+.overlay.show .modal-content {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+/* Close button */
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 20px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #333;
+}
+
+/* Inputs and buttons */
+.form-box input,
+.form-box select,
+.modal-content input,
+.modal-content select {
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    width: 100%;
+    transition: all 0.2s ease;
+}
+
+.form-box input:focus,
+.form-box select:focus,
+.modal-content input:focus,
+.modal-content select:focus {
+    border-color: #216534;
+    box-shadow: 0 0 5px rgba(42,82,63,0.3);
+    outline: none;
+}
+
+.form-box button,
+.modal-content button {
+    padding: 10px;
+    border-radius: 8px;
+    border: none;
+    background: #216534;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.form-box button:hover,
+.modal-content button:hover {
+    background: #349c51;
+    transform: translateY(-1px);
+}
+
+/* Summary Cards */
+.summary-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.summary-card {
+    flex: 1 1 250px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+    padding: 20px;
+    text-align: center;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.summary-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 20px rgba(0,0,0,0.15);
+}
+
+.summary-card h3 {
+    color: #2a523f;
+    margin-bottom: 5px;
+    font-size: 1.3em;
+}
+
+.summary-date {
+    font-size: 0.9em;
+    color: #555;
+    margin-bottom: 12px;
+}
+
+/* Day Navigation */
+.day-navigation {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.day-navigation button {
+    padding: 8px 16px;
+    background: #216534;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.day-navigation button:hover {
+    background: #349c51;
+    transform: translateY(-1px);
+}
+
+#dashboard-date {
+    font-size: 16px;
+    font-weight: 600;
+    text-align: center;
+    color: #1e3d2f;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .tables-container {
+        flex-direction: column;
+    }
+
+    .summary-card {
+        flex: 1 1 100%;
+    }
+
+    #add-entry-btn,
+    #add-stock-btn {
+        width: 60px;
+        height: 60px;
+        font-size: 32px;
+    }
+
+    .search-container, .sub-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .search-container input {
+        width: 100%;
+    }
+
+    .sub-header button.year-btn {
+        width: auto;
+    }
+}
+
+@media (max-width: 480px) {
+    .form-box, .modal-content {
+        width: 95%;
+        padding: 20px;
+    }
+}
+
+@media (max-height: 600px) {
+    .form-box,
+    .modal-content {
+        max-height: 95vh;
+    }
+}
+
+/* Year Buttons (Database Section) */
+.sub-header {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.sub-header button.year-btn {
+    padding: 8px 16px;
+    background: #216534;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.sub-header button.year-btn:hover {
+    background: #349c51;
+    transform: translateY(-1px);
+}
+
+.sub-header button.year-btn.active {
+    background: #216534;
+    color: #fff;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+/* Search Container */
+.search-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 15px;
+    align-items: center;
+}
+
+#search-input {
+    flex: 1 1 250px;
+    padding: 8px 12px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+}
+
+#search-btn {
+    padding: 8px 16px;
+    background: #E9B335;
+    border: none;
+    border-radius: 6px;
+    color: white;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+#search-btn:hover {
+    background: #349c51;
+}
+
+.dashboard-footer {
+    background: #216534;
+    color: white;
+    padding: 12px 24px;
+    text-align: center;
+    font-size: 14px;
+    margin-top: 24px;
+    border-top: 3px solid #FAC20D;
+}
+
+.dashboard-footer .footer-content {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+@media (min-width: 600px) {
+    .dashboard-footer .footer-content {
+        flex-direction: row;
+        justify-content: space-around;
+    }
+}
+
+/* ============================= */
+/* Overlay Forms Fix - Top Align */
+/* ============================= */
+#overlay-form {
+    align-items: center;        /* vertically center */
+    justify-content: center;    /* horizontally center */
+    padding: 0;                 /* remove top padding for center */
+}
+
+/* ============================= */
+/* Male/Female Entry Forms - Square Layout */
+/* ============================= */
+#male-form .form-box,
+#female-form .form-box {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* two columns */
+    gap: 15px 20px;                 /* row gap 15px, column gap 20px */
+    width: 450px;                    /* square-ish width */
+    max-width: 90vw;
+    max-height: 80vh;
+    overflow-y: auto;
+    padding: 25px;
+}
+
+/* Make the title span both columns */
+#male-form .form-box h3,
+#female-form .form-box h3 {
+    grid-column: 1 / -1;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+/* Inputs span single column, labels stay above each input */
+#male-form .form-box label,
+#female-form .form-box label {
+    display: block;
+}
+
+/* Buttons at bottom span both columns */
+#male-form .form-box button,
+#female-form .form-box button {
+    grid-column: 1 / -1;
+}
+
+/* Optional: adjust input width */
+#male-form .form-box input,
+#female-form .form-box input,
+#male-form .form-box select,
+#female-form .form-box select {
+    width: 100%;
+}
+
+/* Adjust close button position */
+#male-form .close-btn,
+#female-form .close-btn {
+    top: 10px;
+    right: 0px;
+}

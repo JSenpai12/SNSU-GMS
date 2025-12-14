@@ -1,0 +1,206 @@
+/* Reset styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Body styling */
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-image: 
+        linear-gradient(135deg, rgba(33,101,52,0.9), rgba(12,58,31,0.9)),
+        url('../images/snsu_bg.jpeg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    border-top: solid 5px #FAC20D;
+}
+
+/* Main container for left and right sides */
+.auth-container {
+    display: flex;
+    flex: 1; /* Fill available vertical space */
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    align-items: center; /* vertically center content */
+    justify-content: space-between; /* optional spacing between left & right */
+    padding: 20px 0;
+}
+
+/* LEFT SIDE: logo + title */
+.auth-left {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+
+.auth-left .logo {
+    width: 150px;
+    margin-bottom: 20px;
+}
+
+.auth-left .system-title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    line-height: 1.2;
+}
+
+/* RIGHT SIDE: login/signup forms */
+.auth-right {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+/* Forms container */
+.container {
+    background-color: rgba(255, 255, 255, 1);
+    padding: 40px 30px;
+    border-radius: 15px;
+    box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+    width: 100%;
+    max-width: 400px;
+    position: relative;
+    transition: all 0.3s ease;
+    border: solid 5px #FAC20D;
+}
+
+/* Page title inside form */
+.page-title {
+    text-align: center;
+    font-size: 2.2rem;
+    margin-bottom: 25px;
+    color: #216534;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+/* Form styling */
+.form-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+}
+
+/* Hide signup initially */
+#signup-container {
+    display: none;
+}
+
+/* Form headings */
+.form-container h2 {
+    text-align: center;
+    color: #216534;
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+/* Inputs */
+.form-container input {
+    padding: 12px 15px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    outline: none;
+    transition: 0.3s;
+    background-color: #fff;
+    color: #333;
+}
+
+.form-container input:focus {
+    border-color: #078f6d;
+    box-shadow: 0 0 10px rgba(7, 143, 109, 0.4);
+}
+
+/* Form: stack inputs and button vertically */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* Buttons */
+form button {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 10px;
+    background: #216534;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+form button:hover {
+    background: #14501f;
+    transform: translateY(-2px);
+}
+
+/* Sign up / login link styling */
+.form-container p {
+    text-align: center;
+    font-size: 14px;
+    color: #555;
+    margin-top: 10px;
+}
+
+.form-container p span {
+    color: #216534;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+/* Footer */
+.dashboard-footer {
+    background: #216534;
+    color: white;
+    padding: 12px 24px;
+    text-align: center;
+    font-size: 14px;
+    margin-top: auto; /* ensures footer sticks at the bottom */
+    border-top: 0.5px solid white;
+}
+
+.dashboard-footer .footer-content {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+@media (min-width: 600px) {
+    .dashboard-footer .footer-content {
+        flex-direction: row;
+        justify-content: space-around;
+    }
+}
+
+/* Responsive tweak */
+@media (max-width: 900px) {
+    .auth-container {
+        flex-direction: column;
+        height: auto;
+    }
+    .auth-left, .auth-right {
+        flex: unset;
+        width: 100%;
+        padding: 20px 0;
+    }
+    .auth-left .system-title {
+        font-size: 2rem;
+    }
+}

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard - SNSU</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='users.css') }}">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav class="navbar">
+            <div class="navbar-left">
+                <img src="{{ url_for('static', filename='images/snsu_logo.png') }}" class="logo" alt="SNSU Logo">
+                <span class="navbar-title">SNSU Student Dashboard</span>
+            </div>
+            <a href="{{ url_for('logout') }}">
+                <button id="logout-btn" class="btn-logout">Logout</button>
+            </a>
+        </nav>
+    </header>
+
+    <!-- Daily Date -->
+    <div class="daily-date">
+        <span id="current-date"></span>
+    </div>
+
+    <!-- Main Content -->
+    <main>
+        <section class="dashboard-section">
+            <div class="dashboard-table-container">
+                <h2>Male Students</h2>
+                <table id="male-dashboard-table">
+                    <thead>
+                        <tr>
+                            <th>Student ID</th>
+                            <th>Name</th>
+                            <th>Year</th>
+                            <th>Polo Size</th>
+                            <th>Slacks Size</th>
+                            <th>Shirt Size</th>
+                            <th>JP Size</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Rows populated by JS -->
+                    </tbody>
+                </table>
+
+                <h2>Female Students</h2>
+                <table id="female-dashboard-table">
+                    <thead>
+                        <tr>
+                            <th>Student ID</th>
+                            <th>Name</th>
+                            <th>Year</th>
+                            <th>Blouse Size</th>
+                            <th>Slacks Size</th>
+                            <th>Skirt Size</th>
+                            <th>Shirt Size</th>
+                            <th>JP Size</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Rows populated by JS -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="dashboard-footer">
+        <div class="footer-content">
+            <span>© 2025 SNSU. All Rights Reserved.</span>
+            <span>SNSU Garment Scheduling and Management System</span>
+            <span>Contact: support@snsu.edu.ph | Tel Nos. (086) 827-3741, (086) 827-3742</span>
+        </div>
+    </footer>
+
+    <script src="{{ url_for('static', filename='js/users.js') }}"></script>
+</body>
+</html>
